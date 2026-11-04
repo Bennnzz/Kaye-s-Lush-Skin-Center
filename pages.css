@@ -1,0 +1,152 @@
+/* My appointments + My cart. Load after pledge.css (header, footer, colors). */
+
+body { display: flex; flex-direction: column; min-height: 100vh; }
+main.page { flex: 1; width: 100%; max-width: 1120px; margin: 0 auto; padding: clamp(24px, 4vw, 44px) clamp(14px, 3vw, 20px) clamp(48px, 8vw, 80px); text-align: left; }
+footer { margin-top: auto; }
+
+/* ---------- Page head ---------- */
+.page-head {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px;
+    padding: clamp(28px, 5vw, 44px) max(20px, calc((100% - 1080px) / 2));
+    background: radial-gradient(ellipse at 20% 0%, #ffd3e3 0%, var(--blush) 55%, #fff3f7 100%);
+    border-bottom: 1px solid var(--line);
+}
+.who { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.avatar { display: grid; place-items: center; flex: none; width: 60px; height: 60px; border-radius: 50%; background: var(--berry); color: #fff; font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; font-weight: 600; border: 3px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+.page-head h1 { margin: 0; font-size: clamp(1.8rem, 4.5vw, 2.6rem); color: var(--berry); }
+.page-head p { margin: 2px 0 0; }
+.page-head .btn { margin: 0; }
+
+/* ---------- Layout ---------- */
+.with-aside { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: clamp(20px, 3vw, 32px); align-items: start; }
+.aside { position: sticky; top: 96px; display: grid; gap: 16px; }
+.panel { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(18px, 3vw, 26px); box-shadow: 0 2px 6px rgba(140, 29, 79, .05), 0 8px 22px rgba(140, 29, 79, .06); }
+.panel h2 { margin: 0 0 12px; font-size: 1.25rem; }
+.panel.tint { background: var(--berry); border-color: var(--berry); color: #fff; }
+.panel.tint h2 { color: #fff; }
+.panel.tint a { color: #fff; font-weight: 600; }
+.checklist { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: .95rem; }
+.checklist li { position: relative; padding-left: 28px; }
+.checklist li::before { content: ""; position: absolute; left: 1px; top: .35em; width: 15px; height: 8px; border-left: 2.5px solid var(--rose); border-bottom: 2.5px solid var(--rose); transform: rotate(-45deg); }
+.aside p { margin: 0; font-size: .95rem; }
+
+/* ---------- Buttons ---------- */
+.btn.block { display: block; width: 100%; margin-top: 0; border: 0; text-align: center; font: inherit; font-weight: 600; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--berry); border: 1.5px solid var(--berry); }
+.btn.ghost:hover { background: var(--berry); color: #fff; }
+.btn:focus-visible, .btn-sm:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+.btn-sm { display: inline-block; padding: 7px 16px; border: 1.5px solid var(--berry); border-radius: 999px; background: transparent; color: var(--berry); font: inherit; font-size: .9rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s; }
+.btn-sm:hover { background: var(--berry); color: #fff; }
+.link-btn { padding: 0; border: 0; background: none; font: inherit; font-size: .88rem; color: var(--rose-dark); text-decoration: underline; cursor: pointer; }
+.link-btn:hover { color: var(--berry); }
+.link-btn:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Tabs (CSS only) ---------- */
+.tab-bar { display: flex; flex-wrap: wrap; gap: 4px 8px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+.tab-bar input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.tab-bar label { display: inline-flex; align-items: center; gap: 8px; margin-bottom: -1px; padding: 10px 16px; border-bottom: 3px solid transparent; color: var(--berry); font-weight: 600; cursor: pointer; transition: color .2s, border-color .2s; }
+.tab-bar label:hover { color: var(--rose-dark); border-bottom-color: var(--line); }
+.tab-bar input:checked + label { border-bottom-color: var(--berry); }
+.tab-bar input:focus-visible + label { outline: 3px solid var(--rose); outline-offset: 2px; border-radius: 8px; }
+.tab-count { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 7px; border-radius: 999px; background: var(--blush); color: var(--berry); font-size: .78rem; font-weight: 700; }
+.tab-bar input:checked + label .tab-count { background: var(--berry); color: #fff; }
+.tab-panel { display: none; }
+
+.tabs:has(#ap-up:checked) #panel-up,
+.tabs:has(#ap-past:checked) #panel-past,
+.tabs:has(#ap-cancel:checked) #panel-cancel,
+.tabs:has(#c-past:checked) #panel-bought { display: block; }
+.tabs:has(#c-cart:checked) #panel-cart { display: grid; }
+
+/* ---------- Status pills ---------- */
+.status { display: inline-flex; align-items: center; gap: 7px; padding: 3px 12px; border-radius: 999px; font-size: .82rem; font-weight: 600; line-height: 1.5; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.status.confirmed { background: #e3f4ea; color: #1f6b45; }
+.status.pending { background: #fff1d6; color: #8a5a00; }
+.status.completed { background: var(--blush); color: var(--berry); }
+.status.cancelled { background: #eee8ea; color: #5f4a54; }
+
+/* ---------- Appointment tickets ---------- */
+.ticket { position: relative; display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; margin-bottom: 18px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 2px 6px rgba(140, 29, 79, .05), 0 8px 22px rgba(140, 29, 79, .06); }
+.ticket::before, .ticket::after { content: ""; position: absolute; left: 87px; width: 18px; height: 18px; border-radius: 50%; background: var(--petal); }
+.ticket::before { top: -10px; }
+.ticket::after { bottom: -10px; }
+.ticket.next { border-color: var(--berry); box-shadow: 0 0 0 1px var(--berry), 0 10px 26px rgba(140, 29, 79, .16); }
+.stub { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px 8px; border-radius: 13px 0 0 13px; border-right: 2px dashed rgba(255, 255, 255, .6); background: var(--berry); color: #fff; line-height: 1.1; text-align: center; }
+.stub .mon { font-size: .95rem; font-weight: 600; }
+.stub .day { font-family: "Fraunces", Georgia, serif; font-size: 2.4rem; font-weight: 600; }
+.stub .dow { font-size: .85rem; opacity: .9; }
+.ticket.past .stub { background: #7d5a6b; }
+.ticket-body { padding: 18px 22px; min-width: 0; }
+.next-tag { margin: 0 0 4px; font-size: .85rem; font-weight: 600; color: var(--rose-dark); }
+.ticket-body h3 { margin: 0 0 4px; font-size: 1.3rem; color: var(--berry); }
+.ticket-body .when { margin: 0 0 10px; font-size: .95rem; }
+.ticket-actions { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 10px; padding: 18px 22px; }
+
+/* ---------- Empty state ---------- */
+.empty { padding: 48px 20px; text-align: center; background: #fff; border: 1.5px dashed var(--line); border-radius: var(--radius); }
+.empty h3 { margin: 0 0 6px; font-size: 1.3rem; color: var(--berry); }
+.empty p { max-width: 40ch; margin: 0 auto 18px; }
+
+/* ---------- Cart ---------- */
+#panel-cart { grid-template-columns: minmax(0, 1fr) 340px; gap: clamp(20px, 3vw, 32px); align-items: start; }
+.cart-list { margin: 0; padding: 0; list-style: none; }
+.cart-item { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto auto; align-items: center; gap: 8px 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+.cart-item:first-child { border-top: 0; padding-top: 0; }
+.cart-item:last-child { padding-bottom: 0; }
+.cart-thumb { display: grid; place-items: center; width: 88px; height: 88px; border: 1px solid var(--line); border-radius: 12px; background: linear-gradient(145deg, #ffe6f0 0%, #ffc4da 100%); color: var(--berry); overflow: hidden; }
+.cart-thumb svg { width: 34px; height: 34px; opacity: .7; }
+.cart-info h3 { margin: 0 0 2px; font-family: "Figtree", system-ui, sans-serif; font-size: 1.02rem; font-weight: 600; line-height: 1.35; color: var(--ink); }
+.cart-info p { margin: 0 0 6px; font-size: .88rem; opacity: .75; }
+.qty { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 999px; background: #fff; }
+.qty button { width: 34px; height: 34px; border: 0; border-radius: 50%; background: none; color: var(--berry); font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.qty button:hover { background: var(--blush); }
+.qty button:focus-visible { outline: 3px solid var(--rose); outline-offset: 0; }
+.qty output { min-width: 28px; text-align: center; font-weight: 600; }
+.line-price { min-width: 82px; text-align: right; font-family: "Fraunces", Georgia, serif; font-size: 1.15rem; font-weight: 600; color: var(--berry); }
+
+.summary { position: sticky; top: 96px; }
+.summary dl { margin: 0 0 18px; }
+.sum-row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; }
+.sum-row dt, .sum-row dd { margin: 0; }
+.sum-row dd { font-weight: 600; }
+.sum-row.discount dd { color: var(--rose-dark); }
+.sum-row.total { margin-top: 6px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 1.1rem; }
+.sum-row.total dd { font-family: "Fraunces", Georgia, serif; font-size: 1.6rem; color: var(--berry); }
+.summary .btn.block + .btn.block { margin-top: 10px; }
+
+/* ---------- Purchased orders ---------- */
+.order { margin-bottom: 18px; padding: 0; overflow: hidden; }
+.order-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding: 16px clamp(18px, 3vw, 26px); background: var(--petal); border-bottom: 1px solid var(--line); }
+.order-head h3 { margin: 0; font-size: 1.15rem; color: var(--berry); }
+.order-head small { display: block; font-size: .85rem; opacity: .75; font-family: "Figtree", system-ui, sans-serif; font-weight: 400; }
+.order-items { margin: 0; padding: 4px clamp(18px, 3vw, 26px); list-style: none; }
+.order-items li { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.order-items li:first-child { border-top: 0; }
+.order-items .cart-thumb { width: 52px; height: 52px; border-radius: 10px; }
+.order-items .cart-thumb svg { width: 22px; height: 22px; }
+.order-items strong { display: block; font-weight: 600; line-height: 1.35; }
+.order-items small { font-size: .85rem; opacity: .75; }
+.order-items .amt { font-weight: 600; }
+.order-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 14px clamp(18px, 3vw, 26px); border-top: 1px dashed var(--line); }
+.order-foot .total { font-size: 1rem; }
+.order-foot .total b { font-family: "Fraunces", Georgia, serif; font-size: 1.4rem; color: var(--berry); margin-left: 6px; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+    .with-aside, #panel-cart { grid-template-columns: minmax(0, 1fr); }
+    .aside, .summary { position: static; }
+}
+@media (max-width: 600px) {
+    .page-head .btn { width: 100%; text-align: center; }
+    .ticket { grid-template-columns: 80px minmax(0, 1fr); }
+    .ticket::before, .ticket::after { left: 71px; }
+    .stub .day { font-size: 2rem; }
+    .ticket-body { padding: 16px 16px 8px; }
+    .ticket-actions { grid-column: 2; flex-direction: row; align-items: center; justify-content: flex-start; padding: 0 16px 16px; }
+    .cart-item { grid-template-columns: 72px minmax(0, 1fr); }
+    .cart-thumb { width: 72px; height: 72px; }
+    .cart-item .qty { grid-column: 2; justify-self: start; }
+    .cart-item .line-price { grid-column: 2; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

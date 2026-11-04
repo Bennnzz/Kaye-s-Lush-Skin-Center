@@ -1,0 +1,56 @@
+/* Service detail pages. Load after pledge.css */
+.service {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(24px, 5vw, 64px);
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 48px 20px 72px;
+}
+.back { display: inline-block; max-width: 1000px; margin: 24px auto 0; padding: 0 20px; color: var(--berry); font-weight: 500; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+.back-wrap { max-width: 1000px; margin: 0 auto; }
+
+.service-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: var(--blush);
+    border: 3px solid var(--rose);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 16px rgba(140, 29, 79, 0.15);
+}
+.service-info h1 { margin: 0 0 8px; font-size: clamp(32px, 5vw, 48px); color: var(--berry); }
+.price { margin: 0 0 20px; font-family: "Fraunces", Georgia, serif; font-size: 30px; font-weight: 600; color: var(--rose-dark); }
+.price small { font-family: "Figtree", system-ui, sans-serif; font-size: 15px; font-weight: 400; color: var(--ink); opacity: 0.7; }
+.service-info p { max-width: 55ch; }
+.service-info ul { padding-left: 20px; }
+
+.booking {
+    margin-top: 28px;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+.booking label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--berry); }
+.booking input[type="date"] {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--ink);
+    background: var(--petal);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+.booking input[type="date"]:focus-visible { outline: 3px solid var(--rose); outline-offset: 2px; }
+.booking .btn { width: 100%; margin-top: 16px; border: 0; font: inherit; font-weight: 600; cursor: pointer; text-align: center; }
+.booking .btn:focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+.status { display: none; margin: 14px 0 0; font-weight: 500; color: var(--berry); }
+.status:target { display: block; }
+
+@media (max-width: 760px) {
+    .service { grid-template-columns: 1fr; padding-top: 28px; }
+    .service-photo { aspect-ratio: 4 / 3; }
+}

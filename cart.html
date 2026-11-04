@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My cart | Kaye’s Lush Skin Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pledge.css">
+    <link rel="stylesheet" href="pages.css">
+    <style>
+        /* Product pictures inside the thumbnail boxes */
+        .cart-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="site-brand" href="pledge.html">
+            <img src="imgs/logo.png" alt="">
+            <span>Kaye’s Lush Skin Center</span>
+        </a>
+        <nav class="site-nav">
+            <a href="products.html">Products</a>
+            <a href="pledge.html#services">Services</a>
+            <a href="pledge.html#promo">Promo</a>
+            <a href="pledge.html#about">About</a>
+            <a class="nav-cta" href="appointment.html">Appointment</a>
+            <a class="nav-cart" href="cart.html" aria-label="Cart, 2 items" aria-current="page">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17.5" cy="20" r="1.3"/></svg>
+                <span>Cart</span><span class="cart-count" aria-hidden="true">2</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="page-head">
+        <div class="who">
+            <div class="avatar" aria-hidden="true">M</div>
+            <div>
+                <h1>My cart</h1>
+                <p>Maria Santos</p>
+            </div>
+        </div>
+        <a class="btn" href="products.html">Continue shopping</a>
+    </div>
+
+    <main class="page">
+        <div class="tabs">
+            <div class="tab-bar" role="radiogroup" aria-label="Cart and purchases">
+                <input type="radio" name="cart" id="c-cart" checked><label for="c-cart">In my cart <span class="tab-count">2</span></label>
+                <input type="radio" name="cart" id="c-past"><label for="c-past">Purchased <span class="tab-count">3</span></label>
+            </div>
+
+            <!-- In cart -->
+            <div class="tab-panel" id="panel-cart">
+                <section class="panel" aria-label="Items in your cart">
+                    <ul class="cart-list">
+                        <li class="cart-item">
+                            <div class="cart-thumb">
+                                <img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules">
+                            </div>
+                            <div class="cart-info">
+                                <h3>Soft Glow Capsules</h3>
+                                <p>Newmoon</p>
+                                <button class="link-btn" type="button">Remove</button>
+                            </div>
+                            <div class="qty" role="group" aria-label="Quantity">
+                                <button type="button" aria-label="Decrease quantity">&minus;</button>
+                                <output>1</output>
+                                <button type="button" aria-label="Increase quantity">+</button>
+                            </div>
+                            <div class="line-price">₱200.00</div>
+                        </li>
+                        <li class="cart-item">
+                            <div class="cart-thumb">
+                                <img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer">
+                            </div>
+                            <div class="cart-info">
+                                <h3>Sunscreen Lotion SPF 50+ with Sanitizer</h3>
+                                <p>The Daily Essentials</p>
+                                <button class="link-btn" type="button">Remove</button>
+                            </div>
+                            <div class="qty" role="group" aria-label="Quantity">
+                                <button type="button" aria-label="Decrease quantity">&minus;</button>
+                                <output>2</output>
+                                <button type="button" aria-label="Increase quantity">+</button>
+                            </div>
+                            <div class="line-price">₱440.00</div>
+                        </li>
+                    </ul>
+                </section>
+
+                <aside class="panel summary" aria-label="Order summary">
+                    <h2>Order summary</h2>
+                    <dl>
+                        <div class="sum-row"><dt>Subtotal</dt><dd>₱640.00</dd></div>
+                        <div class="sum-row discount"><dt>Promo discount</dt><dd>&minus;₱0.00</dd></div>
+                        <div class="sum-row total"><dt>Total</dt><dd>₱640.00</dd></div>
+                    </dl>
+                    <a class="btn block" href="#">Checkout</a>
+                    <a class="btn block ghost" href="products.html">Add more products</a>
+                </aside>
+            </div>
+
+            <!-- Purchased -->
+            <div class="tab-panel" id="panel-bought">
+                <article class="panel order">
+                    <div class="order-head">
+                        <h3>Order #1042 <small>Placed Nov 1, 2026</small></h3>
+                        <span class="status pending">Processing</span>
+                    </div>
+                    <ul class="order-items">
+                        <li>
+                            <div class="cart-thumb"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div>
+                            <div><strong>Skin Set</strong><small>The Daily Essentials · Qty 1</small></div>
+                            <span class="amt">₱699.00</span>
+                        </li>
+                        <li>
+                            <div class="cart-thumb"><img src="assets/products/radiant-glow-soap.jpg" alt="Glow Soap"></div>
+                            <div><strong>Glow Soap</strong><small>Radiant · Qty 1</small></div>
+                            <span class="amt">₱270.00</span>
+                        </li>
+                    </ul>
+                    <div class="order-foot">
+                        <span class="total">Total<b>₱969.00</b></span>
+                    </div>
+                </article>
+
+                <article class="panel order">
+                    <div class="order-head">
+                        <h3>Order #1031 <small>Placed Oct 12, 2026</small></h3>
+                        <span class="status completed">Completed</span>
+                    </div>
+                    <ul class="order-items">
+                        <li>
+                            <div class="cart-thumb"><img src="assets/products/ms-tsung-toner.jpg" alt="Rejuvenating Big Toner"></div>
+                            <div><strong>Rejuvenating Big Toner</strong><small>Ms. Tsung Essentials · Qty 1</small></div>
+                            <span class="amt">₱300.00</span>
+                        </li>
+                    </ul>
+                    <div class="order-foot">
+                        <span class="total">Total<b>₱300.00</b></span>
+                        <a class="btn-sm" href="products.html">Buy again</a>
+                    </div>
+                </article>
+
+                <article class="panel order">
+                    <div class="order-head">
+                        <h3>Order #1008 <small>Placed Sep 20, 2026</small></h3>
+                        <span class="status completed">Completed</span>
+                    </div>
+                    <ul class="order-items">
+                        <li>
+                            <div class="cart-thumb"><img src="assets/products/kbeaute-happy-ua.jpg" alt="Happy UA Whitening Deo Spray"></div>
+                            <div><strong>Happy UA Whitening Deo Spray</strong><small>K-Beauté · Qty 2</small></div>
+                            <span class="amt">₱500.00</span>
+                        </li>
+                        <li>
+                            <div class="cart-thumb"><img src="assets/products/bleaching-cream.jpg" alt="Bleaching Whipped Cream"></div>
+                            <div><strong>Bleaching Whipped Cream</strong><small>K-Beauté · Qty 1</small></div>
+                            <span class="amt">₱260.00</span>
+                        </li>
+                    </ul>
+                    <div class="order-foot">
+                        <span class="total">Total<b>₱760.00</b></span>
+                        <a class="btn-sm" href="products.html">Buy again</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>2026 Kaye's Lush Skin Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>

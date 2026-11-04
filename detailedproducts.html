@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product | Kaye’s Lush Skin Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fff7fa;
+            --maroon: #8e1f50;
+            --pink: #d9467f;
+            --ink: #3a1d2b;
+            --muted: #6f5560;
+            --line: #f3cddb;
+            --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+            --sans: "Figtree", "Segoe UI", Arial, sans-serif;
+            --pad: clamp(16px, 4vw, 54px);
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; -webkit-text-size-adjust: 100%; }
+        body { margin: 0; background: var(--bg) linear-gradient(180deg, #ffdbe9 0%, var(--bg) 420px) no-repeat; color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        img { max-width: 100%; }
+        a { color: var(--maroon); text-decoration: none; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--maroon); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+        /* Header (same as the Products page) */
+        .site-header { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px clamp(12px, 3vw, 32px); padding: 12px var(--pad); background: rgba(255, 247, 250, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); box-shadow: 0 4px 18px rgba(142, 31, 80, .06); }
+        .site-brand { display: flex; align-items: center; gap: clamp(8px, 1.5vw, 14px); min-width: 0; }
+        .site-brand img { width: clamp(42px, 5vw, 56px); height: clamp(42px, 5vw, 56px); border-radius: 50%; display: block; flex: none; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+        .site-brand span { font-family: var(--serif); font-weight: 700; font-size: clamp(1.05rem, 1.2vw + .7rem, 1.35rem); line-height: 1.2; color: var(--maroon); }
+        .site-nav { display: flex; gap: 6px clamp(14px, 2.5vw, 32px); flex-wrap: wrap; justify-content: flex-end; font-size: clamp(.88rem, .3vw + .8rem, 1rem); }
+        .site-nav a { color: var(--maroon); font-weight: 500; padding-bottom: 2px; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+        .site-nav a:hover { color: var(--pink); border-bottom-color: var(--line); }
+        .site-nav a[aria-current="page"] { border-bottom-color: var(--maroon); font-weight: 600; }
+
+        /* Nav: Appointment button + Cart */
+        .site-nav { align-items: center; }
+        .site-nav a.nav-cta { padding: 6px 18px; border: 1.5px solid var(--maroon); border-radius: 999px; }
+        .site-nav a.nav-cta:hover { background: var(--maroon); border-color: var(--maroon); color: #fff; }
+        .site-nav a.nav-cta[aria-current="page"] { background: var(--maroon); color: #fff; }
+        .site-nav a.nav-cart { display: inline-flex; align-items: center; gap: 7px; }
+        .site-nav a.nav-cart svg { width: 20px; height: 20px; flex: none; }
+        .cart-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--pink); color: #fff; font-size: .75rem; font-weight: 700; line-height: 1; }
+
+        /* Layout */
+        main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: 24px 20px 70px; }
+        .back { display: inline-block; font-weight: 500; margin-bottom: 44px; }
+        .back:hover { text-decoration: underline; }
+
+        /* Only the product in the link (#id) is shown. With no #id, the first one shows. */
+        .detail { display: none; }
+        .detail:target,
+        main:not(:has(.detail:target)) .detail:first-of-type { display: block; }
+
+        .top { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+        .pic { border: 2px solid var(--pink); border-radius: 16px; overflow: hidden; background: #ffe6f0; box-shadow: 0 14px 30px rgba(142, 31, 80, .18); }
+        .pic img { display: block; width: 100%; max-height: 560px; object-fit: cover; }
+
+        h1 { font-family: var(--serif); font-weight: 700; font-size: 2.6rem; line-height: 1.15; color: var(--maroon); margin: 0 0 14px; }
+        .brand-line { margin: 0 0 6px; color: var(--muted); font-size: .95rem; }
+        .brand-line a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+        .brand-line a:hover { color: var(--maroon); }
+        .price { font-family: var(--serif); font-weight: 700; font-size: 2.1rem; color: var(--maroon); margin: 0 0 18px; }
+        .desc { margin: 0 0 14px; line-height: 1.75; max-width: 46ch; }
+        .specs { margin: 0 0 26px; padding-left: 20px; line-height: 1.8; }
+        .specs b { font-weight: 600; }
+
+        .btn { display: block; width: 100%; text-align: center; background: var(--maroon); color: #fff; border: 0; border-radius: 999px; padding: 15px 20px; font: inherit; font-weight: 600; cursor: pointer; transition: filter .2s; }
+        .btn:hover { filter: brightness(1.12); }
+
+        /* Related */
+        .related-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--line); margin-top: 70px; padding-top: 32px; }
+        .related-head h2 { font-family: var(--serif); font-size: 1.6rem; color: var(--maroon); margin: 0; }
+        .related-head a { font-weight: 600; }
+        .related-head a:hover { text-decoration: underline; }
+        .related { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; padding-top: 24px; }
+        .rel { text-align: center; color: var(--ink); }
+        .rel .pic { border-radius: 14px; box-shadow: none; transition: box-shadow .25s; }
+        .rel:hover .pic { box-shadow: 0 10px 22px rgba(142, 31, 80, .22); }
+        .rel img { aspect-ratio: 1 / 1; object-fit: cover; }
+        .rel b { display: block; margin-top: 10px; font-size: .92rem; color: var(--maroon); }
+        .rel span { font-weight: 600; font-size: .9rem; }
+
+        /* Footer */
+        footer { background: linear-gradient(180deg, #8e1f50 0%, #741840 100%); color: #fff; text-align: center; padding: 28px var(--pad); font-size: clamp(.85rem, 1vw + .6rem, 1rem); }
+        footer p { margin: 0; }
+
+        @media (max-width: 800px) {
+            .top { grid-template-columns: 1fr; gap: 28px; }
+            h1 { font-size: 2.1rem; }
+            .related { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 720px) {
+            .site-header { justify-content: center; }
+            .site-nav { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="site-brand" href="pledge.html">
+            <img src="assets/logo.png" alt="">
+            <span>Kaye’s Lush Skin Center</span>
+        </a>
+        <nav class="site-nav">
+            <a href="products.html" aria-current="page">Products</a>
+            <a href="pledge.html#packages">Packages</a>
+            <a href="pledge.html#promo">Promo</a>
+            <a href="pledge.html#about">About</a>
+            <a class="nav-cta" href="appointment.html">Appointment</a>
+            <a class="nav-cart" href="cart.html" aria-label="Cart, 2 items">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17.5" cy="20" r="1.3"/></svg>
+                <span>Cart</span><span class="cart-count" aria-hidden="true">2</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <a class="back" href="products.html">&lsaquo; Back</a>
+
+        <!-- 1 -->
+        <article class="detail" id="newmoon-soft-glow">
+            <section class="top">
+                <div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div>
+                <div>
+                    <h1>Soft Glow Capsules</h1>
+                    <p class="brand-line"><a href="products.html?brand=Newmoon">Newmoon</a> · <a href="products.html?cat=Supplements">Supplements</a></p>
+                    <p class="price">₱200.00</p>
+                    <p class="desc">All-in-one food supplement with S-Acetyl Glutathione, Vitamin C (sodium ascorbate) and Zinc, made for brightening, detox, immune support and skin health.</p>
+                    <ul class="specs"><li><b>Size:</b> 30 vegetarian capsules</li><li><b>Form:</b> Capsules</li><li><b>Key ingredients:</b> S-Acetyl Glutathione, Vitamin C, Zinc</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+                <a class="rel" href="#skin-set-trial"><div class="pic"><img src="assets/products/daily-trial-size.jpg" alt="Skin Set: Trial Size"></div><b>Skin Set: Trial Size</b><span>₱799.00</span></a>
+                <a class="rel" href="#sunscreen-night-cream"><div class="pic"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream"></div><b>Face Sunscreen &amp; Night Renewal Cream</b><span>₱230.00</span></a>
+            </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="detail" id="sunscreen-lotion">
+            <section class="top">
+                <div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div>
+                <div>
+                    <h1>Sunscreen Lotion SPF 50+ with Sanitizer</h1>
+                    <p class="brand-line"><a href="products.html?brand=The%20Daily%20Essentials">The Daily Essentials</a> · <a href="products.html?cat=Skin%20Care">Skin Care</a></p>
+                    <p class="price">₱220.00</p>
+                    <p class="desc">Rich, moisturizing sunscreen formula that blocks the skin from UVA and UVB rays.</p>
+                    <ul class="specs"><li><b>Size:</b> 100 mL</li><li><b>Protection:</b> SPF 50+</li><li><b>Form:</b> Lotion with sanitizer</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#sunscreen-night-cream"><div class="pic"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream"></div><b>Face Sunscreen &amp; Night Renewal Cream</b><span>₱230.00</span></a>
+                <a class="rel" href="#ms-tsung-toner"><div class="pic"><img src="assets/products/ms-tsung-toner.jpg" alt="Rejuvenating Big Toner"></div><b>Rejuvenating Big Toner</b><span>₱300.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="detail" id="skin-set">
+            <section class="top">
+                <div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div>
+                <div>
+                    <h1>Skin Set</h1>
+                    <p class="brand-line"><a href="products.html?brand=The%20Daily%20Essentials">The Daily Essentials</a> · <a href="products.html?cat=Sets">Sets</a></p>
+                    <p class="price">₱699.00</p>
+                    <p class="desc">Face Sunscreen SPF 30+, Night Renewal Cream, Multi-Active Toner and Triple Whitening Soap (kojic + glutathione + papaya) in one box.</p>
+                    <ul class="specs"><li><b>Soap:</b> 135g</li><li><b>Toner:</b> 60 mL</li><li><b>Pieces:</b> 4</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#skin-set-trial"><div class="pic"><img src="assets/products/daily-trial-size.jpg" alt="Skin Set: Trial Size"></div><b>Skin Set: Trial Size</b><span>₱799.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#sunscreen-night-cream"><div class="pic"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream"></div><b>Face Sunscreen &amp; Night Renewal Cream</b><span>₱230.00</span></a>
+            </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="detail" id="skin-set-trial">
+            <section class="top">
+                <div class="pic"><img src="assets/products/daily-trial-size.jpg" alt="Skin Set: Trial Size"></div>
+                <div>
+                    <h1>Skin Set: Trial Size</h1>
+                    <p class="brand-line"><a href="products.html?brand=The%20Daily%20Essentials">The Daily Essentials</a> · <a href="products.html?cat=Sets">Sets</a></p>
+                    <p class="price">₱799.00</p>
+                    <p class="desc">Try the full routine first: Triple Whitening Soap, Multi-Active Toner, Face Sunscreen and Night Renewal Cream.</p>
+                    <ul class="specs"><li><b>Soap:</b> 35g</li><li><b>Toner:</b> 30ml</li><li><b>Creams:</b> 5g each</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#sunscreen-night-cream"><div class="pic"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream"></div><b>Face Sunscreen &amp; Night Renewal Cream</b><span>₱230.00</span></a>
+            </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="detail" id="sunscreen-night-cream">
+            <section class="top">
+                <div class="pic"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream"></div>
+                <div>
+                    <h1>Face Sunscreen &amp; Night Renewal Cream</h1>
+                    <p class="brand-line"><a href="products.html?brand=The%20Daily%20Essentials">The Daily Essentials</a> · <a href="products.html?cat=Skin%20Care">Skin Care</a></p>
+                    <p class="price">₱230.00</p>
+                    <p class="desc">Face Sunscreen SPF 30+ with UVA and UVB protection for the day, and a Night Renewal Cream with AHA and BHA for micropeeling.</p>
+                    <ul class="specs"><li><b>Size:</b> 15g each</li><li><b>Day:</b> Face Sunscreen SPF 30+</li><li><b>Night:</b> Night Renewal Cream</li><li><b>Contains:</b> AHA and BHA (night cream)</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#ms-tsung-toner"><div class="pic"><img src="assets/products/ms-tsung-toner.jpg" alt="Rejuvenating Big Toner"></div><b>Rejuvenating Big Toner</b><span>₱300.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="detail" id="happy-ua">
+            <section class="top">
+                <div class="pic"><img src="assets/products/kbeaute-happy-ua.jpg" alt="Happy UA Whitening Deo Spray"></div>
+                <div>
+                    <h1>Happy UA Whitening Deo Spray</h1>
+                    <p class="brand-line"><a href="products.html?brand=K-Beaut%C3%A9">K-Beauté</a> · <a href="products.html?cat=Body%20Care">Body Care</a></p>
+                    <p class="price">₱250.00</p>
+                    <p class="desc">Intense whitening underarm deo spray with Niacinamide and Alpha Arbutin. Happiness through freshness.</p>
+                    <ul class="specs"><li><b>Size:</b> 60ml</li><li><b>Form:</b> Spray</li><li><b>Key ingredients:</b> Niacinamide, Alpha Arbutin</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#bleaching-cream"><div class="pic"><img src="assets/products/bleaching-cream.jpg" alt="Bleaching Whipped Cream"></div><b>Bleaching Whipped Cream</b><span>₱260.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="detail" id="bleaching-cream">
+            <section class="top">
+                <div class="pic"><img src="assets/products/bleaching-cream.jpg" alt="Bleaching Whipped Cream"></div>
+                <div>
+                    <h1>Bleaching Whipped Cream</h1>
+                    <p class="brand-line"><a href="products.html?brand=K-Beaut%C3%A9">K-Beauté</a> · <a href="products.html?cat=Body%20Care">Body Care</a></p>
+                    <p class="price">₱260.00</p>
+                    <p class="desc">Whipped body cream, "not your ordinary bleach." Available in pink and peach labels.</p>
+                    <ul class="specs"><li><b>Size:</b> 250 grams</li><li><b>Form:</b> Whipped cream</li><li><b>Labels:</b> Pink, Peach</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#happy-ua"><div class="pic"><img src="assets/products/kbeaute-happy-ua.jpg" alt="Happy UA Whitening Deo Spray"></div><b>Happy UA Whitening Deo Spray</b><span>₱250.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="detail" id="radiant-glow-soap">
+            <section class="top">
+                <div class="pic"><img src="assets/products/radiant-glow-soap.jpg" alt="Glow Soap"></div>
+                <div>
+                    <h1>Glow Soap</h1>
+                    <p class="brand-line"><a href="products.html?brand=Radiant">Radiant</a> · <a href="products.html?cat=Soap">Soap</a></p>
+                    <p class="price">₱270.00</p>
+                    <p class="desc">Bar soap for a fresh, glowing look.</p>
+                    <ul class="specs"><li><b>Form:</b> Bar soap</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#k-glass-soap"><div class="pic"><img src="assets/products/k-glass-glowing-soap.jpg" alt="Milky Gluta Collagen Soap"></div><b>Milky Gluta Collagen Soap</b><span>₱280.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="detail" id="k-glass-soap">
+            <section class="top">
+                <div class="pic"><img src="assets/products/k-glass-glowing-soap.jpg" alt="Milky Gluta Collagen Soap"></div>
+                <div>
+                    <h1>Milky Gluta Collagen Soap</h1>
+                    <p class="brand-line"><a href="products.html?brand=K%20Glass%20Glowing%20Skin">K Glass Glowing Skin</a> · <a href="products.html?cat=Soap">Soap</a></p>
+                    <p class="price">₱280.00</p>
+                    <p class="desc">Two choices: Premium Milky Gluta Collagen Soap, or the Classic Milky Glutaberry Collagen.</p>
+                    <ul class="specs"><li><b>Form:</b> Bar soap</li><li><b>Choices:</b> Premium, Classic</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#radiant-glow-soap"><div class="pic"><img src="assets/products/radiant-glow-soap.jpg" alt="Glow Soap"></div><b>Glow Soap</b><span>₱270.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="detail" id="ms-tsung-toner">
+            <section class="top">
+                <div class="pic"><img src="assets/products/ms-tsung-toner.jpg" alt="Rejuvenating Big Toner"></div>
+                <div>
+                    <h1>Rejuvenating Big Toner</h1>
+                    <p class="brand-line"><a href="products.html?brand=Ms.%20Tsung%20Essentials">Ms. Tsung Essentials</a> · <a href="products.html?cat=Skin%20Care">Skin Care</a></p>
+                    <p class="price">₱300.00</p>
+                    <p class="desc">Toner with kojic acid, glycolic, lactic and citric acid, sugar cane distillate, cucumber extract, allantoin and hydrogenated castor oil.</p>
+                    <ul class="specs"><li><b>Size:</b> 120ml</li><li><b>Form:</b> Toner</li><li><b>Key ingredients:</b> Kojic acid, Glycolic acid, Lactic acid, Citric acid</li></ul>
+                    <a class="btn" href="cart.html">Checkout</a>
+                </div>
+            </section>
+            <div class="related-head"><h2>Related Products</h2><a href="products.html">View more products</a></div>
+            <div class="related">
+                <a class="rel" href="#sunscreen-lotion"><div class="pic"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer"></div><b>Sunscreen Lotion SPF 50+ with Sanitizer</b><span>₱220.00</span></a>
+                <a class="rel" href="#sunscreen-night-cream"><div class="pic"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream"></div><b>Face Sunscreen &amp; Night Renewal Cream</b><span>₱230.00</span></a>
+                <a class="rel" href="#newmoon-soft-glow"><div class="pic"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules"></div><b>Soft Glow Capsules</b><span>₱200.00</span></a>
+                <a class="rel" href="#skin-set"><div class="pic"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set"></div><b>Skin Set</b><span>₱699.00</span></a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kaye’s Lush Skin Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>

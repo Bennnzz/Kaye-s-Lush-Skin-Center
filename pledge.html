@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaye's Lush Skin Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pledge.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="site-brand" href="pledge.html">
+            <img src="imgs/logo.png" alt="">
+            <span>Kaye’s Lush Skin Center</span>
+        </a>
+        <nav class="site-nav">
+            <a href="products.html">Products</a>
+            <a href="pledge.html#services">Services</a>
+            <a href="pledge.html#promo">Promo</a>
+            <a href="pledge.html#about">About</a>
+            <a class="nav-cta" href="appointment.html">Appointment</a>
+            <a class="nav-cart" href="cart.html" aria-label="Cart, 2 items">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17.5" cy="20" r="1.3"/></svg>
+                <span>Cart</span><span class="cart-count" aria-hidden="true">2</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-label="Featured promos">
+            <div class="slides">
+                <div class="slide slide-1">
+                    <img class="hero-img" src="imgs/bgphoto.jpg" alt="" onerror="this.remove()">
+                    <div class="hero-text">
+                        <h1>Glow with confidence</h1>
+                        <p>Pledge today and enjoy exclusive promos up to 50% off all skin treatments.</p>
+                        <a class="btn" href="#packages">See services</a>
+                    </div>
+                    <label class="slider-arrow prev" for="s3" aria-label="Previous slide">&#8249;</label>
+                    <label class="slider-arrow next" for="s2" aria-label="Next slide">&#8250;</label>
+                </div>
+                <div class="slide slide-2">
+                    <img class="hero-img" src="imgs/slider_2.png" alt="" onerror="this.remove()">
+                    <div class="hero-text">
+                        <h1>Half-price facials</h1>
+                        <p>Our signature facial treatments at 50% off, plus a free skin analysis with every pledge.</p>
+                        <a class="btn" href="#packages">See services</a>
+                    </div>
+                    <label class="slider-arrow prev" for="s1" aria-label="Previous slide">&#8249;</label>
+                    <label class="slider-arrow next" for="s3" aria-label="Next slide">&#8250;</label>
+                </div>
+                <div class="slide slide-3">
+                    <img class="hero-img" src="imgs/slider_3.jpeg" alt="" onerror="this.remove()">
+                    <div class="hero-text">
+                        <h1>Unlock Your Natural Glow</h1>
+                        <p>Nourish your skin with luxurious, lightweight care designed for a flawless finish.</p>
+                        <a class="btn" href="product.html">Go to products</a>
+                    </div>
+                    <label class="slider-arrow prev" for="s2" aria-label="Previous slide">&#8249;</label>
+                    <label class="slider-arrow next" for="s1" aria-label="Next slide">&#8250;</label>
+                </div>
+            </div>
+            <div class="slider-dots" role="radiogroup" aria-label="Choose slide">
+                <input type="radio" name="slide" id="s1" aria-label="Slide 1"><label class="dot dot-1" for="s1"></label>
+                <input type="radio" name="slide" id="s2" aria-label="Slide 2"><label class="dot dot-2" for="s2"></label>
+                <input type="radio" name="slide" id="s3" aria-label="Slide 3"><label class="dot dot-3" for="s3"></label>
+            </div>
+        </section>
+
+        <section id="promo" class="section alt">
+            <h2>Promo highlights</h2>
+            <div class="cards">
+                <div class="card card-feature">
+                    <p class="card-big">50%</p>
+                    <h3>Off facials</h3>
+                    <p>Enjoy glowing skin with our signature facial treatments at half the price.</p>
+                </div>
+                <div class="card">
+                    <h3>Free skin analysis</h3>
+                    <p>Every pledge includes a complimentary skin analysis with our specialists.</p>
+                </div>
+                <div class="card">
+                    <h3>Bundle deals</h3>
+                    <p>Book 3 sessions and get the 4th one free. Perfect for your skin journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section wide">
+            <h2>Services</h2>
+            <p class="hint">Scroll sideways to see every service.</p>
+            <div class="scroll-container" tabindex="0" aria-label="Promo packages">
+            <article class="image-box has-photo">
+            <img class="box-photo" src="imgs/sweatox.png" alt="Sweatox promo: stay fresh, stay confident. Helps reduce sweating, minimizes underarm odor, quick non-surgical treatment.">
+            <h3 class="sr-only">Sweatox</h3>
+            <a class="box-link" href="sweatox.html">
+            <span class="box-btn">View<span class="sr-only">: Sweatox</span></span></a></article>
+                <article class="image-box has-photo">
+                    <img class="box-photo" src="imgs/undlaser.png" alt="Underarm Carbon Laser promo: brighter underarms, more confident you.">
+                    <h3 class="sr-only">Underarm Carbon Laser</h3>
+                    <a class="box-link" href="undlaser.html">
+                        <span class="box-btn">View<span class="sr-only">: Underarm Carbon Laser</span></span>
+                    </a>
+                </article>
+                <article class="image-box has-photo">
+                    <img class="box-photo" src="imgs/pt.png" alt="Photodynamic Therapy promo: clearer skin, healthier you.">
+                    <h3 class="sr-only">Photodynamic Therapy</h3>
+                    <a class="box-link" href="photodynamic.html">
+                        <span class="box-btn">View<span class="sr-only">: Photodynamic Therapy</span></span>
+                    </a>
+                </article>
+                <article class="image-box has-photo photo-left">
+                    <img class="box-photo" src="imgs/cp.png" alt="Chemical Peel promo: renew, rejuvenate, reveal.">
+                    <h3 class="sr-only">Chemical Peel</h3>
+                    <a class="box-link" href="chemical-peel.html">
+                        <span class="box-btn">View<span class="sr-only">: Chemical Peel</span></span>
+                    </a>
+                </article>
+                <article class="image-box has-photo">
+                    <img class="box-photo" src="imgs/laserHR.png" alt="Laser Hair Removal promo: smooth skin, lasting confidence.">
+                    <h3 class="sr-only">Laser Hair Removal</h3>
+                    <a class="box-link" href="laser-hair-removal.html">
+                        <span class="box-btn">View<span class="sr-only">: Laser Hair Removal</span></span>
+                    </a>
+                </article>
+                <article class="image-box has-photo">
+                    <img class="box-photo" src="imgs/permHR.png" alt="Permanent Hair Removal promo: smoother skin, longer results.">
+                    <h3 class="sr-only">Permanent Hair Removal</h3>
+                    <a class="box-link" href="permanent-hair-removal.html">
+                        <span class="box-btn">View<span class="sr-only">: Permanent Hair Removal</span></span>
+                    </a>
+                </article>
+            </div>
+        </section>
+
+         <section id="about" class="section about">
+            <div class="about-text">
+                <h2>About Kaye’s Lush Skin Center</h2>
+                <p class="lead">We help you look and feel your best with safe, gentle and effective skin treatments. Pledge to reserve your slot in our current promos and enjoy:</p>
+                <ul class="perks">
+                    <li>Priority booking</li>
+                    <li>Free consultation</li>
+                    <li>Complimentary skin analysis</li>
+                </ul>
+                <div class="contact">
+                    <h3>Get in touch</h3>
+                    <p>Message us to book a slot or ask about any treatment.</p>
+                    <ul class="contact-links">
+                        <li>
+                            <a href="https://www.facebook.com/kaye.portugal.5" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+                                <span>Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/kaye.portugal.5" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                                <span>Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+639000000000">
+                                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+                                <span>0900 000 0000</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>2026 Kaye's Lush Skin Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>

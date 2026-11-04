@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laser Hair Removal | Kaye's Lush Skin Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pledge.css">
+    <link rel="stylesheet" href="service.css">
+</head>
+<body data-service="Laser Hair Removal">
+    <header class="site-header">
+        <a class="site-brand" href="pledge.html">
+            <img src="imgs/logo.png" alt="">
+            <span>Kaye’s Lush Skin Center</span>
+        </a>
+        <nav class="site-nav">
+            <a href="products.html">Products</a>
+            <a href="pledge.html#services">Services</a>
+            <a href="pledge.html#promo">Promo</a>
+            <a href="pledge.html#about">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="back-wrap"><a class="back" href="pledge.html#packages">&#8249; Back</a></div>
+        <section class="service">
+            <img class="service-photo" src="imgs/laserHR.png" alt="Laser Hair Removal promo">
+            <div class="service-info">
+                <h1>Laser Hair Removal</h1>
+                <p class="price">₱800 <small>per session</small></p>
+                <p>A laser treatment that reduces unwanted hair for smooth skin and lasting confidence, with no more constant shaving or waxing.</p>
+                <ul>
+                    <li>Smooth, hair-free skin</li>
+                    <li>Fewer shaving and waxing routines</li>
+                    <li>Suitable for many body areas</li>
+                </ul>
+                <form class="booking" action="#confirmed" method="get">
+                    <label for="appt-date">Choose your appointment date</label>
+                    <input type="date" id="appt-date" name="date" required>
+                    <button type="submit" class="btn">Make an appointment</button>
+                    <p class="status" id="confirmed" role="status">Date chosen. We will contact you to confirm your appointment.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>2026 Kaye's Lush Skin Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>

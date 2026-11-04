@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My appointments | Kaye’s Lush Skin Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="pledge.css">
+    <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="site-brand" href="pledge.html">
+            <img src="imgs/logo.png" alt="">
+            <span>Kaye’s Lush Skin Center</span>
+        </a>
+        <nav class="site-nav">
+            <a href="products.html">Products</a>
+            <a href="pledge.html#services">Services</a>
+            <a href="pledge.html#promo">Promo</a>
+            <a href="pledge.html#about">About</a>
+            <a class="nav-cta" href="appointment.html" aria-current="page">Appointment</a>
+            <a class="nav-cart" href="cart.html" aria-label="Cart, 2 items">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17.5" cy="20" r="1.3"/></svg>
+                <span>Cart</span><span class="cart-count" aria-hidden="true">2</span>
+            </a>
+        </nav>
+    </header>
+
+    <div class="page-head">
+        <div class="who">
+            <div class="avatar" aria-hidden="true">M</div>
+            <div>
+                <h1>My appointments</h1>
+                <p>Maria Santos</p>
+            </div>
+        </div>
+        <a class="btn" href="pledge.html#services">Book a new appointment</a>
+    </div>
+
+    <main class="page">
+        <div class="with-aside">
+            <div class="tabs">
+                <div class="tab-bar" role="radiogroup" aria-label="Appointment status">
+                    <input type="radio" name="ap" id="ap-up" checked><label for="ap-up">Upcoming <span class="tab-count">2</span></label>
+                    <input type="radio" name="ap" id="ap-past"><label for="ap-past">Past <span class="tab-count">2</span></label>
+                    <input type="radio" name="ap" id="ap-cancel"><label for="ap-cancel">Cancelled <span class="tab-count">0</span></label>
+                </div>
+
+                <section class="tab-panel" id="panel-up" aria-label="Upcoming appointments">
+                    <article class="ticket next">
+                        <div class="stub"><span class="mon">Nov</span><span class="day">12</span><span class="dow">Thu</span></div>
+                        <div class="ticket-body">
+                            <p class="next-tag">Next appointment</p>
+                            <h3>Chemical Peel</h3>
+                            <p class="when">10:30 AM</p>
+                            <span class="status confirmed">Confirmed</span>
+                        </div>
+                        <div class="ticket-actions">
+                            <button class="btn-sm" type="button">Reschedule</button>
+                            <button class="link-btn" type="button">Cancel</button>
+                        </div>
+                    </article>
+                    <article class="ticket">
+                        <div class="stub"><span class="mon">Nov</span><span class="day">21</span><span class="dow">Sat</span></div>
+                        <div class="ticket-body">
+                            <h3>Laser Hair Removal</h3>
+                            <p class="when">2:30 PM</p>
+                            <span class="status pending">Waiting for confirmation</span>
+                        </div>
+                        <div class="ticket-actions">
+                            <button class="btn-sm" type="button">Reschedule</button>
+                            <button class="link-btn" type="button">Cancel</button>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="tab-panel" id="panel-past" aria-label="Past appointments">
+                    <article class="ticket past">
+                        <div class="stub"><span class="mon">Oct</span><span class="day">15</span><span class="dow">Thu</span></div>
+                        <div class="ticket-body">
+                            <h3>Free skin analysis</h3>
+                            <p class="when">1:00 PM</p>
+                            <span class="status completed">Completed</span>
+                        </div>
+                        <div class="ticket-actions">
+                            <a class="btn-sm" href="pledge.html#services">Book again</a>
+                        </div>
+                    </article>
+                    <article class="ticket past">
+                        <div class="stub"><span class="mon">Sep</span><span class="day">27</span><span class="dow">Sun</span></div>
+                        <div class="ticket-body">
+                            <h3>Underarm Carbon Laser</h3>
+                            <p class="when">9:00 AM</p>
+                            <span class="status completed">Completed</span>
+                        </div>
+                        <div class="ticket-actions">
+                            <a class="btn-sm" href="pledge.html#services">Book again</a>
+                        </div>
+                    </article>
+                </section>
+
+                <section class="tab-panel" id="panel-cancel" aria-label="Cancelled appointments">
+                    <div class="empty">
+                        <h3>No cancelled appointments</h3>
+                        <p>Appointments you cancel will show up here.</p>
+                        <a class="btn-sm" href="pledge.html#services">Browse services</a>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="aside" aria-label="Help">
+                <section class="panel">
+                    <h2>Every booking includes</h2>
+                    <ul class="checklist">
+                        <li>Priority booking</li>
+                        <li>Free consultation</li>
+                        <li>Complimentary skin analysis</li>
+                    </ul>
+                </section>
+                <section class="panel tint">
+                    <h2>Need to change a slot?</h2>
+                    <p>Message us on <a href="https://www.facebook.com/YOUR.PAGE" target="_blank" rel="noopener">Facebook</a> or call <a href="tel:+639000000000">0900 000 0000</a>.</p>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <p>2026 Kaye's Lush Skin Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>

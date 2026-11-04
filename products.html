@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | Kaye’s Lush Skin Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fff7fa;
+            --maroon: #8e1f50;
+            --pink: #d9467f;
+            --ink: #3a1d2b;
+            --muted: #6f5560;
+            --line: #f3cddb;
+            --soft: #ffeef4;
+            --shadow: 0 2px 6px rgba(142, 31, 80, .05), 0 8px 22px rgba(142, 31, 80, .07);
+            --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+            --sans: "Figtree", "Segoe UI", Arial, sans-serif;
+            --pad: clamp(16px, 4vw, 54px);
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        img { max-width: 100%; }
+        a { color: var(--maroon); text-decoration: none; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--maroon); outline-offset: 2px; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+        /* Header */
+        .site-header { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px clamp(12px, 3vw, 32px); padding: 12px var(--pad); background: rgba(255, 247, 250, .94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); box-shadow: 0 4px 18px rgba(142, 31, 80, .06); }
+        .site-brand { display: flex; align-items: center; gap: clamp(8px, 1.5vw, 14px); min-width: 0; }
+        .site-brand img { width: clamp(42px, 5vw, 56px); height: clamp(42px, 5vw, 56px); border-radius: 50%; display: block; flex: none; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+        .site-brand span { font-family: var(--serif); font-weight: 700; font-size: clamp(1.05rem, 1.2vw + .7rem, 1.35rem); line-height: 1.2; color: var(--maroon); }
+        .site-nav { display: flex; gap: 6px clamp(14px, 2.5vw, 32px); flex-wrap: wrap; justify-content: flex-end; font-size: clamp(.88rem, .3vw + .8rem, 1rem); }
+        .site-nav a { color: var(--maroon); font-weight: 500; padding-bottom: 2px; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+        .site-nav a:hover { color: var(--pink); border-bottom-color: var(--line); }
+        .site-nav a[aria-current="page"] { border-bottom-color: var(--maroon); font-weight: 600; }
+
+        /* Nav: Appointment button + Cart */
+        .site-nav { align-items: center; }
+        .site-nav a.nav-cta { padding: 6px 18px; border: 1.5px solid var(--maroon); border-radius: 999px; }
+        .site-nav a.nav-cta:hover { background: var(--maroon); border-color: var(--maroon); color: #fff; }
+        .site-nav a.nav-cta[aria-current="page"] { background: var(--maroon); color: #fff; }
+        .site-nav a.nav-cart { display: inline-flex; align-items: center; gap: 7px; }
+        .site-nav a.nav-cart svg { width: 20px; height: 20px; flex: none; }
+        .cart-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--pink); color: #fff; font-size: .75rem; font-weight: 700; line-height: 1; }
+
+        /* Page title */
+        .page-head { background: radial-gradient(ellipse at 50% 0%, #ffdbe9 0%, var(--soft) 55%, #fff3f7 100%); border-bottom: 1px solid var(--line); text-align: center; padding: clamp(36px, 7vw, 60px) var(--pad) clamp(32px, 6vw, 52px); }
+        .page-head h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1.15; color: var(--maroon); margin: 0 0 14px; }
+        .page-head h1::after { content: ""; display: block; width: 56px; height: 3px; border-radius: 3px; background: var(--pink); margin: 14px auto 0; }
+        .page-head p { margin: 0 auto; max-width: 52ch; color: var(--muted); }
+
+        /* Layout */
+        main { flex: 1; width: 100%; max-width: 1180px; margin: 0 auto; padding: clamp(24px, 4vw, 40px) clamp(14px, 3vw, 20px) clamp(48px, 8vw, 80px); }
+        .shop { display: grid; grid-template-columns: minmax(210px, 250px) minmax(0, 1fr); gap: clamp(20px, 3vw, 36px); align-items: start; }
+        .results { min-width: 0; }
+
+        /* Filters */
+        .filters { position: sticky; top: 96px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; box-shadow: var(--shadow); }
+        .filters-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 14px; }
+        .filters h2 { font-family: var(--serif); font-size: 1.25rem; color: var(--maroon); margin: 0; }
+        .clear-link { font-size: .85rem; color: var(--pink); text-decoration: underline; }
+        .filter-group { padding: 16px 0 6px; border-top: 1px solid var(--line); }
+        .filter-group h3 { margin: 0 0 8px; font-size: .95rem; color: var(--maroon); }
+        .filter-group label { display: flex; align-items: center; gap: 10px; padding: 5px 8px; margin: 0 -8px; border-radius: 8px; font-size: .92rem; cursor: pointer; transition: background .15s; }
+        .filter-group label:hover { background: var(--soft); }
+        .filter-group label span { margin-left: auto; font-size: .8rem; color: var(--muted); }
+        .filter-group input { accent-color: var(--maroon); width: 16px; height: 16px; flex: none; }
+        .ftoggle { display: none; }
+        .filter-toggle { display: none; width: 100%; margin-bottom: 16px; padding: 12px 18px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--maroon); font: inherit; font-weight: 600; text-align: center; cursor: pointer; }
+
+        /* Toolbar */
+        .toolbar { display: flex; align-items: center; justify-content: flex-end; gap: 12px 14px; flex-wrap: wrap; margin-bottom: 14px; }
+        .sort { display: flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--muted); flex: 0 1 auto; }
+        .sort select { min-width: 0; max-width: 100%; padding: 11px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); font: inherit; }
+        .sort select:focus { border-color: var(--pink); }
+        .hint { margin: 0 0 18px; font-size: .88rem; color: var(--muted); }
+
+        /* Product grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); gap: clamp(16px, 2.5vw, 26px) clamp(14px, 2vw, 22px); }
+        .product { display: flex; flex-direction: column; min-width: 0; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: box-shadow .25s, transform .25s, border-color .25s; }
+        .product:hover { box-shadow: 0 14px 30px rgba(142, 31, 80, .18); transform: translateY(-4px); border-color: #ecaec6; }
+        .thumb { position: relative; display: block; overflow: hidden; background: linear-gradient(145deg, #ffe6f0 0%, #ffc4da 100%); border-bottom: 1px solid var(--line); }
+        .thumb img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; transition: transform .4s; }
+        .product:hover .thumb img { transform: scale(1.05); }
+        .badge { position: absolute; top: 12px; left: 12px; background: rgba(255, 255, 255, .92); color: var(--maroon); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; font-size: .78rem; font-weight: 600; box-shadow: 0 2px 6px rgba(142, 31, 80, .1); }
+        .meta { display: flex; flex-direction: column; flex: 1; padding: 16px 18px 20px; }
+        .meta h3 { margin: 0 0 2px; font-size: 1.02rem; font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
+        .meta h3 a { color: var(--ink); }
+        .meta h3 a:hover { color: var(--maroon); }
+        .brand { margin: 0 0 10px; font-size: .85rem; color: var(--muted); }
+        .price { font-family: var(--serif); font-weight: 700; font-size: 1.25rem; color: var(--maroon); margin: auto 0 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+        .view { display: block; text-align: center; border: 1px solid var(--maroon); color: var(--maroon); border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: .92rem; transition: background .2s, color .2s; }
+        .view:hover { background: var(--maroon); color: #fff; }
+
+        /* CSS-only sorting (each card carries --az and --za order values) */
+        .shop:has(#sortSelect option[value="az"]:checked) .product { order: var(--az); }
+        .shop:has(#sortSelect option[value="za"]:checked) .product { order: var(--za); }
+
+        /* CSS-only filtering (one category + one brand; both must match) */
+        .shop:has(#c-skin:checked) .product:not(.c-skin),
+        .shop:has(#c-body:checked) .product:not(.c-body),
+        .shop:has(#c-soap:checked) .product:not(.c-soap),
+        .shop:has(#c-sets:checked) .product:not(.c-sets),
+        .shop:has(#c-supp:checked) .product:not(.c-supp),
+        .shop:has(#b-newmoon:checked) .product:not(.b-newmoon),
+        .shop:has(#b-daily:checked) .product:not(.b-daily),
+        .shop:has(#b-kbeaute:checked) .product:not(.b-kbeaute),
+        .shop:has(#b-radiant:checked) .product:not(.b-radiant),
+        .shop:has(#b-kglass:checked) .product:not(.b-kglass),
+        .shop:has(#b-tsung:checked) .product:not(.b-tsung) { display: none; }
+
+        /* Footer */
+        footer { background: linear-gradient(180deg, #8e1f50 0%, #741840 100%); color: #fff; text-align: center; padding: 28px var(--pad); font-size: clamp(.85rem, 1vw + .6rem, 1rem); }
+        footer p { margin: 0; }
+
+        @media (max-width: 900px) {
+            .shop { grid-template-columns: minmax(0, 1fr); }
+            .filter-toggle { display: block; }
+            .filters { position: static; display: none; margin-bottom: 20px; }
+            .ftoggle:checked ~ .filters { display: block; }
+        }
+        @media (max-width: 720px) {
+            .site-header { justify-content: center; }
+            .site-nav { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .sort { width: 100%; }
+            .sort select { flex: 1; }
+            .meta { padding: 14px 14px 18px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="site-brand" href="pledge.html">
+            <img src="assets/logo.png" alt="">
+            <span>Kaye’s Lush Skin Center</span>
+        </a>
+        <nav class="site-nav">
+            <a href="products.html" aria-current="page">Products</a>
+            <a href="pledge.html#services">Services</a>
+            <a href="pledge.html#promo">Promo</a>
+            <a href="pledge.html#about">About</a>
+            <a class="nav-cta" href="appointment.html">Appointment</a>
+            <a class="nav-cart" href="cart.html" aria-label="Cart, 2 items">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.2a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5 3H2"/><circle cx="9.5" cy="20" r="1.3"/><circle cx="17.5" cy="20" r="1.3"/></svg>
+                <span>Cart</span><span class="cart-count" aria-hidden="true">2</span>
+            </a>
+        </nav>
+    </header>
+
+    <section class="page-head">
+        <h1>Our Products</h1>
+        <p>Browse everything we carry, then open a product to see its details and reserve it.</p>
+    </section>
+
+    <main>
+        <div class="shop">
+            <input type="checkbox" class="ftoggle" id="ftoggle">
+            <label class="filter-toggle" for="ftoggle">Show / hide filters</label>
+
+            <aside class="filters" id="filters">
+                <div class="filters-head">
+                    <h2>Filter Options</h2>
+                    <a class="clear-link" href="products.html">Clear all</a>
+                </div>
+                <div class="filter-group">
+                    <h3>By Categories</h3>
+                    <label><input type="radio" name="cat" id="c-all" checked> All <span>10</span></label>
+                    <label><input type="radio" name="cat" id="c-skin"> Skin Care <span>3</span></label>
+                    <label><input type="radio" name="cat" id="c-body"> Body Care <span>2</span></label>
+                    <label><input type="radio" name="cat" id="c-soap"> Soap <span>2</span></label>
+                    <label><input type="radio" name="cat" id="c-sets"> Sets <span>2</span></label>
+                    <label><input type="radio" name="cat" id="c-supp"> Supplements <span>1</span></label>
+                </div>
+                <div class="filter-group">
+                    <h3>By Brand</h3>
+                    <label><input type="radio" name="brand" id="b-all" checked> All <span>10</span></label>
+                    <label><input type="radio" name="brand" id="b-newmoon"> Newmoon <span>1</span></label>
+                    <label><input type="radio" name="brand" id="b-daily"> The Daily Essentials <span>4</span></label>
+                    <label><input type="radio" name="brand" id="b-kbeaute"> K-Beauté <span>2</span></label>
+                    <label><input type="radio" name="brand" id="b-radiant"> Radiant <span>1</span></label>
+                    <label><input type="radio" name="brand" id="b-kglass"> K Glass Glowing Skin <span>1</span></label>
+                    <label><input type="radio" name="brand" id="b-tsung"> Ms. Tsung Essentials <span>1</span></label>
+                </div>
+            </aside>
+
+            <div class="results">
+                <div class="toolbar">
+                    <label class="sort">Sort by:
+                        <select id="sortSelect">
+                            <option value="default">Default Sorting</option>
+                            <option value="az">Name: A to Z</option>
+                            <option value="za">Name: Z to A</option>
+                        </select>
+                    </label>
+                </div>
+
+                <p class="hint">Pick a category and/or brand. If nothing shows, no product matches that combination.</p>
+
+                <div class="product-grid">
+                    <article class="product c-supp b-newmoon" style="--az:9;--za:2">
+                        <a class="thumb" href="detailedproducts.html#newmoon-soft-glow" aria-label="Soft Glow Capsules"><img src="assets/products/newmoon-soft-glow.jpg" alt="Soft Glow Capsules" loading="lazy"><span class="badge">Supplements</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#newmoon-soft-glow">Soft Glow Capsules</a></h3><p class="brand">Newmoon</p><p class="price">₱200.00</p><a class="view" href="detailedproducts.html#newmoon-soft-glow">View details</a></div>
+                    </article>
+                    <article class="product c-skin b-daily" style="--az:10;--za:1">
+                        <a class="thumb" href="detailedproducts.html#sunscreen-lotion" aria-label="Sunscreen Lotion SPF 50+ with Sanitizer"><img src="assets/products/daily-sunscreen-lotion.jpg" alt="Sunscreen Lotion SPF 50+ with Sanitizer" loading="lazy"><span class="badge">Skin Care</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#sunscreen-lotion">Sunscreen Lotion SPF 50+ with Sanitizer</a></h3><p class="brand">The Daily Essentials</p><p class="price">₱220.00</p><a class="view" href="detailedproducts.html#sunscreen-lotion">View details</a></div>
+                    </article>
+                    <article class="product c-sets b-daily" style="--az:7;--za:4">
+                        <a class="thumb" href="detailedproducts.html#skin-set" aria-label="Skin Set"><img src="assets/products/daily-skin-set.jpg" alt="Skin Set" loading="lazy"><span class="badge">Sets</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#skin-set">Skin Set</a></h3><p class="brand">The Daily Essentials</p><p class="price">₱699.00</p><a class="view" href="detailedproducts.html#skin-set">View details</a></div>
+                    </article>
+                    <article class="product c-sets b-daily" style="--az:8;--za:3">
+                        <a class="thumb" href="detailedproducts.html#skin-set-trial" aria-label="Skin Set: Trial Size"><img src="assets/products/daily-trial-size.jpg" alt="Skin Set: Trial Size" loading="lazy"><span class="badge">Sets</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#skin-set-trial">Skin Set: Trial Size</a></h3><p class="brand">The Daily Essentials</p><p class="price">₱799.00</p><a class="view" href="detailedproducts.html#skin-set-trial">View details</a></div>
+                    </article>
+                    <article class="product c-skin b-daily" style="--az:2;--za:9">
+                        <a class="thumb" href="detailedproducts.html#sunscreen-night-cream" aria-label="Face Sunscreen &amp; Night Renewal Cream"><img src="assets/products/daily-sunscreen-night-cream.jpg" alt="Face Sunscreen &amp; Night Renewal Cream" loading="lazy"><span class="badge">Skin Care</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#sunscreen-night-cream">Face Sunscreen &amp; Night Renewal Cream</a></h3><p class="brand">The Daily Essentials</p><p class="price">₱230.00</p><a class="view" href="detailedproducts.html#sunscreen-night-cream">View details</a></div>
+                    </article>
+                    <article class="product c-body b-kbeaute" style="--az:4;--za:7">
+                        <a class="thumb" href="detailedproducts.html#happy-ua" aria-label="Happy UA Whitening Deo Spray"><img src="assets/products/kbeaute-happy-ua.jpg" alt="Happy UA Whitening Deo Spray" loading="lazy"><span class="badge">Body Care</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#happy-ua">Happy UA Whitening Deo Spray</a></h3><p class="brand">K-Beauté</p><p class="price">₱250.00</p><a class="view" href="detailedproducts.html#happy-ua">View details</a></div>
+                    </article>
+                    <article class="product c-body b-kbeaute" style="--az:1;--za:10">
+                        <a class="thumb" href="detailedproducts.html#bleaching-cream" aria-label="Bleaching Whipped Cream"><img src="assets/products/bleaching-cream.jpg" alt="Bleaching Whipped Cream" loading="lazy"><span class="badge">Body Care</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#bleaching-cream">Bleaching Whipped Cream</a></h3><p class="brand">K-Beauté</p><p class="price">₱260.00</p><a class="view" href="detailedproducts.html#bleaching-cream">View details</a></div>
+                    </article>
+                    <article class="product c-soap b-radiant" style="--az:3;--za:8">
+                        <a class="thumb" href="detailedproducts.html#radiant-glow-soap" aria-label="Glow Soap"><img src="assets/products/radiant-glow-soap.jpg" alt="Glow Soap" loading="lazy"><span class="badge">Soap</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#radiant-glow-soap">Glow Soap</a></h3><p class="brand">Radiant</p><p class="price">₱270.00</p><a class="view" href="detailedproducts.html#radiant-glow-soap">View details</a></div>
+                    </article>
+                    <article class="product c-soap b-kglass" style="--az:5;--za:6">
+                        <a class="thumb" href="detailedproducts.html#k-glass-soap" aria-label="Milky Gluta Collagen Soap"><img src="assets/products/k-glass-glowing-soap.jpg" alt="Milky Gluta Collagen Soap" loading="lazy"><span class="badge">Soap</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#k-glass-soap">Milky Gluta Collagen Soap</a></h3><p class="brand">K Glass Glowing Skin</p><p class="price">₱280.00</p><a class="view" href="detailedproducts.html#k-glass-soap">View details</a></div>
+                    </article>
+                    <article class="product c-skin b-tsung" style="--az:6;--za:5">
+                        <a class="thumb" href="detailedproducts.html#ms-tsung-toner" aria-label="Rejuvenating Big Toner"><img src="assets/products/ms-tsung-toner.jpg" alt="Rejuvenating Big Toner" loading="lazy"><span class="badge">Skin Care</span></a>
+                        <div class="meta"><h3><a href="detailedproducts.html#ms-tsung-toner">Rejuvenating Big Toner</a></h3><p class="brand">Ms. Tsung Essentials</p><p class="price">₱300.00</p><a class="view" href="detailedproducts.html#ms-tsung-toner">View details</a></div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Kaye’s Lush Skin Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>
